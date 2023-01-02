@@ -1,0 +1,43 @@
+---
+title: "P8105_hw1"
+output: github_document
+author: "Yang Xie"
+date: "2023-01-02"
+---
+
+** Load Pckages**
+```{r message=FALSE}
+library(tidyverse)
+```
+
+### Problem 1
+Load the penguins data set and give a short description using inline R code:
+```{r}
+data("penguins", package="palmerpenguins")
+
+penguins
+```
+
+* The data set penguins has `r nrow(penguins)` rows and `r ncol(penguins)` columns.
+
+* The data set contains variables: `r colnames(penguins)`.
+
+* The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm = TRUE)`.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
