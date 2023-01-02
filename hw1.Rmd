@@ -35,16 +35,53 @@ ggsave('scatterplot Q1.jpg')
 
 
 
+### Problem 2
+```{r}
+set.seed(1)
+
+new_df <- tibble(
+  vector_num = rnorm(10),
+  vector_log = vector_num > 0,
+  vector_char = letters[1:10],
+  vector_fac = factor(c("A", "B", "c","A", "B", "c","A", "B", "c", "A"))
+)
+
+new_df
+```
+
+**Calculating the mean of variables in the dataframe**
+```{r}
+vnum <- pull(new_df, var = 1)
+mean(vnum)
+
+vlog <- pull(new_df, var = 2)
+mean(vlog)
+
+vchar <- pull(new_df, var = 3)
+mean(vchar)
+
+vfac <- pull(new_df, var = 4)
+mean(vfac)
+
+```
+
+**Converting the type for non-numeric variables**
+```{r}
+vlog <- as.numeric(vlog)
+mean(vlog)
+
+vchar <- as.numeric(vchar)
+mean(vchar)
 
 
+vfac <- as.numeric(vfac)
+mean(vfac)
+```
 
+* Only logical and factor typed values are converted into numeric. Character values cannot be converted.
 
-
-
-
-
-
-
-
+  1. For logical values, the `as.numeric` function converts every TRUE to 1 and converts every FALSE to 0.
+  1. For factor values, the `as.numeric` function converts each unique factor level to a integer begins at 1. In our case, three factor levels "A", "B", "C" are converted to 1, 2, 3 respectively.
+  1. However, we can not convert character values using `as.numeric` function. All we get are NAs.
 
 

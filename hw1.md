@@ -54,3 +54,106 @@ penguins %>%
 ``` r
 ggsave('scatterplot Q1.jpg')
 ```
+
+### Problem 2
+
+``` r
+set.seed(1)
+
+new_df <- tibble(
+  vector_num = rnorm(10),
+  vector_log = vector_num > 0,
+  vector_char = letters[1:10],
+  vector_fac = factor(c("A", "B", "c","A", "B", "c","A", "B", "c", "A"))
+)
+
+new_df
+```
+
+    ## # A tibble: 10 × 4
+    ##    vector_num vector_log vector_char vector_fac
+    ##         <dbl> <lgl>      <chr>       <fct>     
+    ##  1     -0.626 FALSE      a           A         
+    ##  2      0.184 TRUE       b           B         
+    ##  3     -0.836 FALSE      c           c         
+    ##  4      1.60  TRUE       d           A         
+    ##  5      0.330 TRUE       e           B         
+    ##  6     -0.820 FALSE      f           c         
+    ##  7      0.487 TRUE       g           A         
+    ##  8      0.738 TRUE       h           B         
+    ##  9      0.576 TRUE       i           c         
+    ## 10     -0.305 FALSE      j           A
+
+**Calculating the mean of variables in the dataframe**
+
+``` r
+vnum <- pull(new_df, var = 1)
+mean(vnum)
+```
+
+    ## [1] 0.1322028
+
+``` r
+vlog <- pull(new_df, var = 2)
+mean(vlog)
+```
+
+    ## [1] 0.6
+
+``` r
+vchar <- pull(new_df, var = 3)
+mean(vchar)
+```
+
+    ## Warning in mean.default(vchar): 参数不是数值也不是逻辑值：回覆NA
+
+    ## [1] NA
+
+``` r
+vfac <- pull(new_df, var = 4)
+mean(vfac)
+```
+
+    ## Warning in mean.default(vfac): 参数不是数值也不是逻辑值：回覆NA
+
+    ## [1] NA
+
+**Converting the type for non-numeric variables**
+
+``` r
+vlog <- as.numeric(vlog)
+mean(vlog)
+```
+
+    ## [1] 0.6
+
+``` r
+vchar <- as.numeric(vchar)
+```
+
+    ## Warning: 强制改变过程中产生了NA
+
+``` r
+mean(vchar)
+```
+
+    ## [1] NA
+
+``` r
+vfac <- as.numeric(vfac)
+mean(vfac)
+```
+
+    ## [1] 1.9
+
+-   Only logical and factor typed values are converted into numeric.
+    Character values cannot be converted.
+
+    1.  For logical values, the `as.numeric` function converts every
+        TRUE to 1 and converts every FALSE to 0.
+    2.  For factor values, the `as.numeric` function converts each
+        unique factor level to a integer begins at 1. In our case, three
+        factor levels “A”, “B”, “C” are converted to 1, 2, 3
+        respectively.
+    3.  However, we can not convert character values using `as.numeric`
+        function. All we get are NAs.
