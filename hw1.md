@@ -3,13 +3,11 @@ P8105_hw1
 Yang Xie
 2023-01-02
 
-\*\* Load Pckages\*\*
+**Load Pckages**
 
 ``` r
 library(tidyverse)
 ```
-
-    ## Warning: 程辑包'tidyverse'是用R版本4.2.2 来建造的
 
 ### Problem 1
 
@@ -44,3 +42,15 @@ penguins
     bill_depth_mm, flipper_length_mm, body_mass_g, sex, year.
 
 -   The mean flipper length is 200.9152047.
+
+``` r
+penguins %>%
+  ggplot()+
+  geom_point(aes(x=bill_length_mm, y=flipper_length_mm, color=species))
+```
+
+![](hw1_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+``` r
+ggsave('scatterplot Q1.jpg')
+```

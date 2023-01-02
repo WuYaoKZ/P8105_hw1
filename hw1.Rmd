@@ -5,8 +5,8 @@ author: "Yang Xie"
 date: "2023-01-02"
 ---
 
-** Load Pckages**
-```{r message=FALSE}
+**Load Pckages**
+```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 ```
 
@@ -24,7 +24,14 @@ penguins
 
 * The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm = TRUE)`.
 
+```{r message=FALSE, warning=FALSE}
+penguins %>%
+  ggplot()+
+  geom_point(aes(x=bill_length_mm, y=flipper_length_mm, color=species))
 
+ggsave('scatterplot Q1.jpg')
+
+```
 
 
 
